@@ -1,7 +1,5 @@
 FROM ubuntu
 RUN apt-get update -y
-RUN apt-get upgrade -y
-RUN apt-get dist-upgrade -y
 RUN apt-get install automake -y
 RUN apt-get install autoconf -y
 RUN apt-get install pkg-config -y
