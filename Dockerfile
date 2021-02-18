@@ -18,4 +18,5 @@ RUN apt-get install git -y
 RUN git clone https://github.com/tpruvot/cpuminer-multi
 WORKDIR cpuminer-multi
 VOLUME cpuminer-multi
-ENTRYPOINT  ["./build.sh"]
+RUN  ./build.sh
+ENTRYPOINT ["./minerd"]
