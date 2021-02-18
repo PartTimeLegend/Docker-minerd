@@ -14,6 +14,7 @@ RUN apt-get install libgmp-dev -y
 RUN apt-get install zlib1g-dev -y
 RUN apt-get install make -y
 RUN apt-get install g++ -y
+RUN apt-get install git -y
 RUN git clone https://github.com/tpruvot/cpuminer-multi
 WORKDIR cpuminer-multi
 VOLUME cpuminer-multi
