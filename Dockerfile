@@ -3,7 +3,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/London
 RUN apt-get update -y && \
   apt-get upgrade -y && \
-  dist-upgrade -y
+  apt-get dist-upgrade -y
 RUN apt-get install automake \
   autoconf \
   pkg-config \
