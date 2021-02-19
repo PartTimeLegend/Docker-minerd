@@ -1,9 +1,9 @@
 FROM ubuntu
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/London
-RUN apt-get update
-RUN apt-get upgrade
-RUN apt-get dist-upgrade
+RUN apt-get update -y && \
+  apt-get upgrade -y && \
+  dist-upgrade -y
 RUN apt-get install automake \
   autoconf \
   pkg-config \
