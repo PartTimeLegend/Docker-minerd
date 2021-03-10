@@ -1,28 +1,29 @@
-FROM ubuntu:rolling
-ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=Europe/London
-RUN apt-get update -y && \
-  apt-get upgrade -y && \
-  apt-get dist-upgrade -y
-RUN apt-get install automake \
-  autoconf \
-  pkg-config \
-  libcurl4-openssl-dev \
-  libjansson-dev \
-  libssl-dev \
-  libgmp-dev \
-  zlib1g-dev \
-  make \
-  g++ \
-  git -y
+FROM alpine:latest
+
+RUN apk add --no-cache \
+    libcurl \
+    libgcc \
+    libstdc++ \
+    openssl \
+    autoconf \
+    automake \
+    build-base \
+    curl \
+    curl-dev \
+    git \
+    openssl-dev
 RUN git clone https://github.com/tpruvot/cpuminer-multi
-WORKDIR cpuminer-multi
-VOLUME cpuminer-multi
-RUN  ./build.sh
-RUN apt-get remove automake \
-  autoconf \
-  pkg-config \
-  make \
-  g++ \
-  git -y
-ENTRYPOINT ["./minerd"]
+WORKDIR cpuminer-multi 
+RUN ./autogen.sh
+RUN ./configure CFLAGS="-O3 -march=native" --with-crypto --with-curl
+RUN make install
+RUN apk del --purge \
+    libcurl \
+    libgcc \
+    libstdc++ \
+    autoconf \
+    automake \
+    build-base \
+    git
+RUN ./cpuminer --help
+ENTRYPOINT [ "./cpuminer" ]
