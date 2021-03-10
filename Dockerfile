@@ -25,4 +25,5 @@ RUN apk del --purge \
     automake \
     build-base \
     git
-ENTRYPOINT [ "./minerd" ]
+RUN ./cpuminer --help
+ENTRYPOINT [ "./cpuminer" ]
