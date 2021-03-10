@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:rolling
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/London
 RUN apt-get update -y && \
